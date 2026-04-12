@@ -43,3 +43,14 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.logoImg {
+  width: 200px;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .logoImg {
+    width: 160px;
+  }
+}
