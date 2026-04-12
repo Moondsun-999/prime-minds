@@ -1,0 +1,168 @@
+.section {
+  padding: var(--space-24) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.paths {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--space-4);
+  align-items: stretch;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.card {
+  padding: var(--space-10);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--duration-normal) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+}
+
+.cardOld {
+  opacity: 0.6;
+}
+
+.cardOld:hover {
+  opacity: 0.75;
+}
+
+.cardNew {
+  border-style: solid;
+  border-color: rgba(54, 10, 151, 0.3);
+  box-shadow: var(--shadow-glow);
+  opacity: 1;
+  background: var(--color-surface-elevated);
+}
+
+/* Dot pattern on new card */
+.cardNew::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at center, rgba(54, 10, 151, 0.06) 1px, transparent 1px);
+  background-size: 6px 6px;
+  pointer-events: none;
+}
+
+/* Corner accents on new card */
+.cardNew .cornerTL,
+.cardNew .cornerTR,
+.cardNew .cornerBL,
+.cardNew .cornerBR {
+  border-color: var(--color-primary) !important;
+}
+
+/* Gradient border glow */
+.cardNew::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  padding: 1px;
+  background: var(--gradient-hero);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cardIcon {
+  margin-bottom: var(--space-4);
+}
+
+.cardTitle {
+  font-family: var(--font-body) !important;
+  font-size: var(--text-xl) !important;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: var(--space-6);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  flex: 1;
+  margin-bottom: var(--space-8);
+}
+
+.list li {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: var(--leading-normal);
+  padding-left: var(--space-6);
+  position: relative;
+}
+
+.cardOld .list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--color-text-subtle);
+}
+
+.cardNew .list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+
+.cardBottom {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.faded {
+  font-size: var(--text-sm);
+  color: var(--color-text-subtle);
+  text-decoration: line-through;
+  font-style: italic;
+}
+
+.vsCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+.vsCircle span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  color: var(--color-text-subtle);
+  letter-spacing: var(--tracking-wider);
+}
+
+@media (max-width: 768px) {
+  .paths {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .vsCircle {
+    justify-self: center;
+  }
+
+  .card {
+    padding: var(--space-8);
+  }
+}
