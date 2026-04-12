@@ -1,55 +1,16 @@
 import React from "react";
-import { TrendingDown, RefreshCw, Brain, Wallet, HeartCrack, Battery } from "lucide-react";
 import SectionWrapper from "./ui/SectionWrapper";
-import styles from "./ProblemSection.module.css";
+import { AnimatedFeatureCarousel } from "./ui/AnimatedFeatureCarousel";
 
-const painPoints = [
-  {
-    icon: TrendingDown,
-    title: "M9ayed f Nafs La Place",
-    description:
-      "You wake up, go to work, come back exhausted. Months pass — nothing changes. L7ayat kat doz o nta wa9ef.",
-    tag: "Stagnation",
-  },
-  {
-    icon: RefreshCw,
-    title: "Jerebt Kolchi, Walou Ma Khdem",
-    description:
-      "Trading, ecom, dropshipping — you put money in and watched it vanish. Daba makat3refch chno t trust.",
-    tag: "Failed Attempts",
-    colSpan: 2,
-  },
-  {
-    icon: Brain,
-    title: "Overthinking = Zero Action",
-    description:
-      "Every week it's a new idea. You research for hours, get excited, then freeze. L'analyse paralysie kat qtelk.",
-    tag: "Analysis Paralysis",
-  },
-  {
-    icon: Wallet,
-    title: "L Flous 3merha Makatkafi",
-    description:
-      "10,000-17,000 MAD/month sounds okay until rent, transport, food, and life eat it all. Zero savings.",
-    tag: "Financial Trap",
-    colSpan: 2,
-  },
-  {
-    icon: HeartCrack,
-    title: "L'avenir Wa9ef",
-    description:
-      "You can't plan a future — no marriage, no car, no apartment. Mkatqderch tplanifié walou.",
-    tag: "No Future",
-  },
-  {
-    icon: Battery,
-    title: "Qrib T Laisser Tomber",
-    description:
-      "\"Rbbi 3tani had l9isma.\" That thought hits every night. You scroll seeing others succeed while you stand still.",
-    tag: "Burnout",
-    colSpan: 2,
-  },
-];
+const images = {
+  alt: "Prime Minds Workflow",
+  step1img1: "https://images.unsplash.com/photo-1517502474497-6a9ea1525015?q=80&w=1740&auto=format&fit=crop", 
+  step1img2: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1740&auto=format&fit=crop", 
+  step2img1: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1740&auto=format&fit=crop", 
+  step2img2: "https://images.unsplash.com/photo-1507925922837-326f12d9348e?q=80&w=1740&auto=format&fit=crop", 
+  step3img: "https://images.unsplash.com/photo-1621503373738-9cb5bc43bf08?q=80&w=1740&auto=format&fit=crop", 
+  step4img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1742&auto=format&fit=crop", 
+};
 
 export default function ProblemSection() {
   return (
@@ -68,38 +29,7 @@ export default function ProblemSection() {
         </p>
       </div>
 
-      <div className={styles.bentoGrid}>
-        {painPoints.map((point, i) => {
-          const Icon = point.icon;
-          return (
-            <div
-              key={i}
-              className={`${styles.featureCard} ${point.colSpan === 2 ? styles.colSpan2 : ""}`}
-            >
-              {/* Dot pattern overlay */}
-              <div className={styles.dotPattern} />
-
-              <div className={styles.cardInner}>
-                <div className={styles.cardTop}>
-                  <div className={styles.iconWrap}>
-                    <Icon size={18} strokeWidth={1.5} />
-                  </div>
-                  <span className={styles.tag}>#{point.tag}</span>
-                </div>
-
-                <h3 className={styles.cardTitle}>{point.title}</h3>
-                <p className={styles.cardDesc}>{point.description}</p>
-              </div>
-
-              {/* Corner accents */}
-              <span className={styles.cornerTL} />
-              <span className={styles.cornerTR} />
-              <span className={styles.cornerBL} />
-              <span className={styles.cornerBR} />
-            </div>
-          );
-        })}
-      </div>
+      <AnimatedFeatureCarousel image={images} />
     </SectionWrapper>
   );
 }
