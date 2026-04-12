@@ -26,10 +26,10 @@ export default function Navbar() {
           <Image
             src="/images/brand/logo-dark-bg.svg"
             alt="Prime Minds"
-            width={130}
-            height={18}
+            width={160}
+            height={22}
             priority
-            style={{ width: "130px", height: "auto" }}
+            style={{ width: "160px", height: "auto" }}
           />
         </a>
 
