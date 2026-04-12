@@ -1,12 +1,5 @@
 {
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.khalk.co" }],
-      "destination": "https://khalk.co/:path*",
-      "permanent": true
-    }
-  ],
+  "name": "prime-minds",
   "headers": [
     {
       "source": "/(.*)",
