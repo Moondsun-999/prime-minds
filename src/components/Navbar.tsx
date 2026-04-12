@@ -29,7 +29,7 @@ export default function Navbar() {
             width={160}
             height={22}
             priority
-            style={{ width: "260px", height: "auto" }}
+            style={{ width: "160px", height: "auto" }}
           />
         </a>
 
