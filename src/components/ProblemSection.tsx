@@ -47,6 +47,7 @@ const painPoints = [
     description:
       "\"Rbbi 3tani had l9isma.\" That thought hits every night. You scroll seeing others succeed while you stand still.",
     tag: "Burnout",
+    colSpan: 2,
   },
 ];
 
