@@ -59,6 +59,12 @@ export const metadata: Metadata = {
     follow: true,
   },
   metadataBase: new URL("https://khalk.co"),
+  icons: {
+    icon: [
+      { url: "/images/brand/favicon-light.png", media: "(prefers-color-scheme: light)" },
+      { url: "/images/brand/favicon-dark.png", media: "(prefers-color-scheme: dark)" },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -68,10 +74,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${jakarta.variable}`}>
-      <head>
-        <link rel="icon" href="/images/brand/favicon.svg" type="image/svg+xml" />
-        <link rel="icon" href="/images/brand/favicon.png" type="image/png" />
-      </head>
       <body>{children}</body>
     </html>
   );
