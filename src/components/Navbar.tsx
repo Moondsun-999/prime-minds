@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Button from "./ui/Button";
 import styles from "./Navbar.module.css";
 
@@ -22,7 +23,7 @@ export default function Navbar() {
         {/* Empty spacer for flex layout balance */}
         <div className={styles.spacer} />
 
-        <a href="/" className={styles.logo}>
+        <Link href="/" className={styles.logo}>
           <Image
             src="/images/brand/logo-dark-bg.svg"
             alt="Prime Minds"
@@ -31,7 +32,7 @@ export default function Navbar() {
             priority
             className={styles.logoImg}
           />
-        </a>
+        </Link>
 
         <div className={styles.cta}>
           <Button href={skoolUrl} variant="primary" size="default">
