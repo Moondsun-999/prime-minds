@@ -1,63 +1,32 @@
-# Deployment Guide — Prime Minds (khalk.co)
+# Deployment — Prime Minds (khalk.co)
 
-## Prerequisites
-- Vercel account
-- Cloudflare account with `khalk.co` domain
-- GitHub repository for the project
+Checked 2026-11-11.
 
-## Step 1: Push to GitHub
-```bash
-cd "d:\New folder\PrimeMinds"
-git add .
-git commit -m "feat: initial Prime Minds landing page"
-git remote add origin https://github.com/[your-username]/prime-minds.git
-git push -u origin main
-```
+## How it's wired
+- **GitHub:** `Moondsun-999/prime-minds`, branch `master`.
+- **Vercel:** project `prime-minds` in the `khalks-projects` team, connected to the GitHub repo.
+  Every push to `master` deploys production; every PR gets a preview URL.
+- **Domains (Vercel):** `www.khalk.co` (primary) and `khalk.co`. The apex redirects to `www.khalk.co`.
+- **DNS (Cloudflare, nameservers `ivy`/`max.ns.cloudflare.com`):**
 
-## Step 2: Deploy to Vercel
-1. Go to [vercel.com](https://vercel.com) and sign in
-2. Click "Add New Project"
-3. Import the GitHub repository
-4. Vercel auto-detects Next.js — defaults are fine
-5. Add environment variables:
-   - `NEXT_PUBLIC_SKOOL_URL` = your Skool community URL
-   - `NEXT_PUBLIC_YOUTUBE_URL` = your YouTube channel URL
-   - (add all other `NEXT_PUBLIC_*` vars from `.env.local`)
-6. Click "Deploy"
-7. Note the Vercel deployment URL (e.g., `prime-minds-xxx.vercel.app`)
-
-## Step 3: Configure Cloudflare DNS
-1. Go to Cloudflare dashboard → `khalk.co` domain
-2. Go to DNS → Records
-3. Add records:
-
-For root domain (`khalk.co`):
 | Type | Name | Value | Proxy |
 |------|------|-------|-------|
-| CNAME | @ | cname.vercel-dns.com | DNS only (grey cloud) |
+| A | @ | Vercel IPs (216.198.79.1, 64.29.17.1) | DNS only (grey cloud) |
+| CNAME | www | project-specific `*.vercel-dns-017.com` target | DNS only (grey cloud) |
 
-For `www` subdomain:
-| Type | Name | Value | Proxy |
-|------|------|-------|-------|
-| CNAME | www | cname.vercel-dns.com | DNS only (grey cloud) |
+> Keep both records **DNS only**. Proxying through Cloudflare conflicts with Vercel's SSL.
 
-> ⚠️ **Important:** Set proxy to "DNS only" (grey cloud) to avoid SSL conflicts with Vercel.
+Vercel shows the nameservers with a ✗ because DNS is managed at Cloudflare, not Vercel. That's expected.
 
-## Step 4: Add Domain in Vercel
-1. Go to your Vercel project → Settings → Domains
-2. Add `khalk.co`
-3. Add `www.khalk.co` (and set up redirect to `khalk.co`)
-4. Vercel will auto-provision SSL certificate
-5. Wait for DNS propagation (usually 5-30 minutes)
+## Environment variables
+None are needed today. If you add `NEXT_PUBLIC_*` variables (Skool URL, YouTube URL), add them in
+Vercel → Project → Settings → Environment Variables, and list their names in `.env.example`.
 
-## Step 5: Verify
-- Visit `https://khalk.co` — should show the landing page
-- Visit `https://www.khalk.co` — should redirect to `khalk.co`
-- Check SSL (padlock icon)
-- Test on mobile
+## `vercel.json`
+Security headers on every route and long-term caching for `/images/*`. Redirects are handled by the
+Vercel domain settings, not this file.
 
-## Vercel Config (vercel.json)
-Already created in the project root with:
-- Redirect: `www.khalk.co` → `khalk.co`
-- Security headers
-- Cache control for static assets
+## Checking a deploy
+1. `vercel ls prime-minds` (or the Vercel connector) shows the latest deploy as **Ready**.
+2. Open https://khalk.co: it should land on https://www.khalk.co with a valid padlock.
+3. Check on mobile.
