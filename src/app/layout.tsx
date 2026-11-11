@@ -18,7 +18,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Prime Minds — Join the Path to Financial Freedom",
+  title: "Prime Minds — Build a Business While Working Your 9-to-5",
   description:
     "Failed many times. Never gave up. Join a community of serious people building AI businesses while working 9-to-5 in Morocco. Mindset, business models, AI skills, and 1:1 coaching.",
   keywords: [
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Abdallah Khalk" }],
   creator: "Abdallah Khalk",
   openGraph: {
-    title: "Prime Minds — Join the Path to Financial Freedom",
+    title: "Prime Minds — Build a Business While Working Your 9-to-5",
     description:
       "Failed many times. Never gave up. Join a community of serious people building real businesses.",
     url: "https://khalk.co",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Prime Minds — Join the Path to Financial Freedom",
+    title: "Prime Minds — Build a Business While Working Your 9-to-5",
     description:
       "Community for serious people building AI businesses while working 9-to-5.",
     images: ["/og-image.png"],
