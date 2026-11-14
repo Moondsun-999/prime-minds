@@ -27,6 +27,8 @@ Read the canonical offer and ICP from `../ops/docs/primeminds/` before changing 
 - `src/components`: one section per file (`Hero`, `ProblemSection`, `PricingSection`, …), each with its `.module.css`
 - `src/components/ui`: reusable primitives (Button, Card, Accordion, SectionWrapper)
 - `public/images/brand`: logos and favicons used by the site
+- `src/app/guide` (lead-magnet opt-in), `src/app/guide/pick-one` (the workbook), `src/app/coaching` (1:1 landing page), `src/app/api/optin` (forwards opt-ins to `OPTIN_WEBHOOK_URL`)
+- `src/content/pickOne.ts`: the workbook's text (single source); `src/lib/links.ts`: booking link and funnel paths
 - `docs/deployment.md`: how Vercel + Cloudflare are wired
 
 Code rules: `.claude/rules/code.md`.

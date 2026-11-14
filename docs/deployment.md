@@ -19,8 +19,10 @@ Checked 2026-11-11.
 Vercel shows the nameservers with a ✗ because DNS is managed at Cloudflare, not Vercel. That's expected.
 
 ## Environment variables
-None are needed today. If you add `NEXT_PUBLIC_*` variables (Skool URL, YouTube URL), add them in
-Vercel → Project → Settings → Environment Variables, and list their names in `.env.example`.
+Set in Vercel → Project → Settings → Environment Variables; names are listed in `.env.example`.
+- `NEXT_PUBLIC_BOOKING_URL`: booking link for the Business Fit Call. Until it's set, the call buttons show "Booking opens soon".
+- `OPTIN_WEBHOOK_URL`: where `/api/optin` forwards lead-magnet sign-ups (for example an n8n webhook). Until it's set, **emails are not stored anywhere**; the workbook still opens.
+- `NEXT_PUBLIC_SKOOL_URL`: Skool community link used by the home page.
 
 ## `vercel.json`
 Security headers on every route and long-term caching for `/images/*`. Redirects are handled by the
