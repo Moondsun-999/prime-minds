@@ -1,17 +1,81 @@
 /* One question per screen, typeform-style: big question, underline inputs, OK + Enter. */
 
+/* Sticky progress: percent done, time left, and a bar. */
 .progress {
-  position: fixed;
-  inset: 0 0 auto;
-  height: 4px;
-  background: var(--color-surface-elevated);
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
   z-index: 10;
+  margin-inline: calc(-1 * var(--space-4));
+  padding: var(--space-3) var(--space-4);
+  background: rgba(10, 10, 10, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.progressInner {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.progressText {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.pct {
+  font-family: var(--ar-display);
+  font-weight: 700;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.left {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-muted);
+}
+
+.clock {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.track {
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-elevated);
+  overflow: hidden;
 }
 
 .fill {
   height: 100%;
+  border-radius: var(--radius-full);
   background: var(--gradient-hero);
-  transition: width 300ms ease;
+  transition: width 400ms ease;
+}
+
+.duration {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: fit-content;
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: var(--space-1) var(--space-4);
+  margin: 0 0 var(--space-2);
 }
 
 .stage {
