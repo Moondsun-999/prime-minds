@@ -1,67 +1,90 @@
 /* One question per screen, typeform-style: big question, underline inputs, OK + Enter. */
 
-/* Sticky progress: percent done, time left, and a bar. */
+/* Sticky progress with no box of its own: it paints the same glow as the page
+   (pinned to the screen, so the two line up) and fades out at the bottom edge,
+   so questions scroll under it without a visible seam. */
 .progress {
   position: sticky;
   top: env(safe-area-inset-top, 0px);
   z-index: 10;
-  margin-inline: calc(-1 * var(--space-4));
-  padding: var(--space-3) var(--space-4);
-  background: rgba(10, 10, 10, 0.82);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--color-border);
+  padding-block: var(--space-4) var(--space-6);
+  background: var(--gradient-brand), var(--color-bg);
+  background-attachment: fixed;
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent);
+  mask-image: linear-gradient(to bottom, #000 72%, transparent);
 }
 
 .progressInner {
   display: grid;
-  gap: var(--space-2);
+  gap: var(--space-3);
 }
 
 .progressText {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   gap: var(--space-4);
   font-size: var(--text-sm);
+  color: var(--color-text-muted);
 }
 
 .pct {
   font-family: var(--ar-display);
-  font-weight: 700;
-  color: var(--color-text);
+  font-weight: 600;
+  color: var(--color-text-muted);
   font-variant-numeric: tabular-nums;
+}
+
+.pct bdi {
+  color: var(--color-accent);
+  font-weight: 700;
 }
 
 .left {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  color: var(--color-text-muted);
 }
 
 .clock {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   flex-shrink: 0;
   fill: none;
-  stroke: var(--color-accent);
+  stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
+  opacity: 0.8;
 }
 
 .track {
-  height: 8px;
+  position: relative;
+  height: 4px;
   border-radius: var(--radius-full);
-  background: var(--color-surface-elevated);
-  overflow: hidden;
+  background: rgba(255, 255, 255, 0.07);
 }
 
 .fill {
+  position: relative;
   height: 100%;
   border-radius: var(--radius-full);
-  background: var(--gradient-hero);
-  transition: width 400ms ease;
+  background: linear-gradient(270deg, #360A97 0%, #7E4580 55%, #DA8690 100%);
+  box-shadow: 0 0 14px rgba(218, 134, 144, 0.35);
+  transition: width 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* A soft glowing dot at the leading edge (left, since the bar fills right to left). */
+.fill::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: -5px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(218, 134, 144, 0.18), 0 0 14px rgba(218, 134, 144, 0.6);
+  transform: translateY(-50%);
 }
 
 .duration {
@@ -467,5 +490,4 @@
   .option,
   .input {
     transition: none;
-  }
-}
+  }}
