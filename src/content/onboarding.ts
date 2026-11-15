@@ -33,7 +33,7 @@ export const onboarding = {
   title: "استمارة البداية",
   welcome: [
     "مرحبًا! هذه الأسئلة تساعدني على فهم عملكِ قبل جلستنا الأولى، لنبدأ من حيث أنتِ فعلًا.",
-    "تأخذ نحو ربع ساعة: سؤال واحد في كل مرة، وأغلبها اختيارات. أنا وحدي من يقرأ إجاباتكِ، وأستعملها لأبني خطتكِ.",
+    "سؤال واحد في كل مرة، وأغلبها اختيارات. أنا وحدي من يقرأ إجاباتكِ، وأستعملها لأبني خطتكِ.",
     "إجاباتكِ تُحفظ على هذا الجهاز وأنتِ تكتبين، فيمكنكِ التوقف والعودة لاحقًا من الرابط نفسه.",
   ],
   start: "لنبدأ",
@@ -57,6 +57,11 @@ export const onboarding = {
   copy: "انسخي إجاباتي",
   copied: "نُسخت",
   stepLabel: (n: number, total: number) => `${n} من ${total}`,
+  done: (pct: number) => `أنجزتِ ${pct}%`,
+  doneLabel: "أنجزتِ",
+  timeLeft: (label: string) => `باقٍ نحو ${label}`,
+  almostDone: "آخر سؤال!",
+  totalTime: (label: string) => `المدة: نحو ${label}`,
 };
 
 export const screens: Screen[] = [
@@ -518,3 +523,21 @@ export const steps: Step[] = screens.flatMap((screen) => {
 });
 
 export const allFields: Field[] = screens.flatMap((s) => s.fields);
+
+/** Rough seconds to answer each kind of question; used for the "time left" estimate. */
+const secondsPerType: Record<FieldType, number> = { text: 15, url: 12, choice: 8, multi: 12, textarea: 45 };
+
+/** Estimated seconds for each step, in order. */
+// Optional questions count half: many get skipped.
+export const stepSeconds: number[] = steps.map((s) =>
+  s.fields.reduce((sum, f) => sum + secondsPerType[f.type] * (f.required ? 1 : 0.5), 0),
+);
+
+/** "نحو 7 دقائق", with correct Arabic number agreement. */
+export function minutesLabel(seconds: number): string {
+  const m = Math.max(1, Math.round(seconds / 60));
+  if (m === 1) return "دقيقة واحدة";
+  if (m === 2) return "دقيقتان";
+  if (m <= 10) return `${m} دقائق`;
+  return `${m} دقيقة`;
+}

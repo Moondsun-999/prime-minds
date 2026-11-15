@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { groups, onboarding as t, screens, steps, type Field } from "@/content/onboarding";
+import { groups, minutesLabel, onboarding as t, screens, stepSeconds, steps, type Field } from "@/content/onboarding";
 import styles from "./OnboardingForm.module.css";
 
 type Value = string | string[];
@@ -141,10 +141,16 @@ export function OnboardingForm({ code }: OnboardingFormProps) {
     );
   }
 
+  const totalSeconds = stepSeconds.reduce((a, b) => a + b, 0);
+
   if (!current) {
     return (
       <div className={styles.stage}>
         <h1 className={styles.welcomeTitle}>{t.title}</h1>
+        <p className={styles.duration}>
+          <ClockIcon />
+          {t.totalTime(minutesLabel(totalSeconds))}
+        </p>
         {t.welcome.map((p) => (
           <p key={p} className={styles.welcomeText}>
             {p}
@@ -162,11 +168,28 @@ export function OnboardingForm({ code }: OnboardingFormProps) {
   const group = current.group ? groups[current.group] : undefined;
   const single = current.fields.length === 1 ? current.fields[0] : null;
   const isLast = step === total;
+  // Progress counts finished questions; time left includes the current one.
+  const doneSeconds = stepSeconds.slice(0, step - 1).reduce((a, b) => a + b, 0);
+  const leftSeconds = totalSeconds - doneSeconds;
+  const pct = Math.round((doneSeconds / totalSeconds) * 100);
 
   return (
     <>
-      <div className={styles.progress} aria-hidden="true">
-        <div className={styles.fill} style={{ width: `${(step / total) * 100}%` }} />
+      <div className={styles.progress} role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={pct} aria-label={t.done(pct)}>
+        <div className={styles.progressInner}>
+          <div className={styles.progressText}>
+            <span className={styles.pct}>
+              {t.doneLabel} <bdi dir="ltr">{pct}%</bdi>
+            </span>
+            <span className={styles.left}>
+              <ClockIcon />
+              {isLast ? t.almostDone : t.timeLeft(minutesLabel(leftSeconds))}
+            </span>
+          </div>
+          <div className={styles.track}>
+            <div className={styles.fill} style={{ width: `${Math.max(pct, 2)}%` }} />
+          </div>
+        </div>
       </div>
 
       {status === "error" && (
@@ -258,6 +281,15 @@ export function OnboardingForm({ code }: OnboardingFormProps) {
         <span>{t.stepLabel(step, total)}</span>
       </nav>
     </>
+  );
+}
+
+function ClockIcon() {
+  return (
+    <svg className={styles.clock} viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </svg>
   );
 }
 
