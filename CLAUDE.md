@@ -27,6 +27,7 @@ Read the canonical offer and ICP from `../ops/docs/primeminds/` before changing 
 - `src/components`: one section per file (`Hero`, `ProblemSection`, `PricingSection`, …), each with its `.module.css`
 - `src/components/ui`: reusable primitives (Button, Card, Accordion, SectionWrapper)
 - `public/images/brand`: logos and favicons used by the site
+- `src/app/onboarding/[code]`: private Arabic onboarding form for coaching clients (noindex, 404 without a valid code); questions in `src/content/onboarding.ts`, server helpers in `src/lib/onboarding.ts`, submit route `src/app/api/onboarding` (forwards to `ONBOARDING_WEBHOOK_URL`)
 - `docs/deployment.md`: how Vercel + Cloudflare are wired
 
 Code rules: `.claude/rules/code.md`.
