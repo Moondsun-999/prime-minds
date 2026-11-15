@@ -35,7 +35,8 @@ export async function POST(request: Request) {
   if (!webhook) return Response.json({ ok: false, error: "store" }, { status: 503 });
 
   const submittedAt = new Date().toISOString();
-  const date = submittedAt.slice(0, 10);
+  // Date and time (UTC) in the name, so a second submission never collides with the first.
+  const stamp = submittedAt.slice(0, 16).replace("T", "-").replace(":", "");
   try {
     const res = await fetch(webhook, {
       method: "POST",
@@ -46,7 +47,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         client: slug,
         submittedAt,
-        path: `clients/${slug}/intake/${date}-onboarding.md`,
+        path: `clients/${slug}/intake/${stamp}-onboarding.md`,
         markdown: toMarkdown(slug, answers, submittedAt),
         answers,
       }),
