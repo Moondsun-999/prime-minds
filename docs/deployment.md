@@ -19,8 +19,17 @@ Checked 2026-11-11.
 Vercel shows the nameservers with a ✗ because DNS is managed at Cloudflare, not Vercel. That's expected.
 
 ## Environment variables
-None are needed today. If you add `NEXT_PUBLIC_*` variables (Skool URL, YouTube URL), add them in
-Vercel → Project → Settings → Environment Variables, and list their names in `.env.example`.
+Set in Vercel → Project → Settings → Environment Variables (server-only; never `NEXT_PUBLIC_`).
+
+Client onboarding form (`/onboarding/<code>`):
+- `ONBOARDING_CODES`: private link codes mapped to client folder slugs, `code1:kawtar,code2:nachwa`.
+  Codes are random, 16–64 letters/digits. Any code not listed gets a 404. Add a pair per new client.
+- `ONBOARDING_WEBHOOK_URL`: where `/api/onboarding` sends the answers (JSON with `client`, `path`,
+  `markdown`, `answers`). The receiver saves `markdown` to `path` in the ops repo.
+- `ONBOARDING_WEBHOOK_SECRET`: sent as the `X-Onboarding-Secret` header; the receiver rejects anything else.
+
+Until the webhook is set, the form shows the client an error on submit and keeps her answers in her
+browser, so nothing is lost.
 
 ## `vercel.json`
 Security headers on every route and long-term caching for `/images/*`. Redirects are handled by the
