@@ -1,0 +1,222 @@
+.section {
+  padding: var(--space-20) var(--space-5);
+  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(54, 10, 151, 0.55) 0%, rgba(10, 10, 10, 0) 70%), var(--color-bg);
+}
+
+.inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  margin-bottom: var(--space-10);
+}
+
+.book {
+  flex: none;
+  width: 180px;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.5));
+}
+
+.book img {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: bob 5s ease-in-out infinite;
+}
+
+.headText {
+  flex: 1 1 420px;
+  min-width: 0;
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.title {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-ar), serif;
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3.4vw, 2.625rem);
+  line-height: 1.4;
+  color: var(--color-white);
+}
+
+.meta {
+  margin: 0;
+  font-size: var(--text-lg);
+  color: #A0A0A8;
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr));
+  gap: var(--space-4);
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--pb-card-dark);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  transition: opacity 0.7s var(--pb-ease), transform 0.35s var(--pb-ease), border-color 0.3s ease, background 0.3s ease !important;
+}
+
+.item:hover {
+  border-color: rgba(218, 134, 144, 0.55);
+  transform: translateY(-3px) !important;
+}
+
+.featured {
+  background: linear-gradient(160deg, #2A1240 0%, #160F1E 100%);
+  border: 1.5px solid var(--color-accent);
+  box-shadow: 0 0 0 0 rgba(218, 134, 144, 0.4);
+  animation: ring 3.6s ease-in-out 1.5s infinite;
+}
+
+.check {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  margin-top: var(--space-1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent);
+  color: #1A0634;
+  transform: scale(0);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+}
+
+.item[data-shown] .check {
+  transform: scale(1);
+}
+
+.step {
+  display: inline-block;
+  margin-bottom: var(--space-1);
+  padding: 1px var(--space-3);
+  border-radius: var(--radius-full);
+  background: rgba(218, 134, 144, 0.12);
+  color: var(--color-accent);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.item p {
+  margin: 0;
+  font-size: var(--text-lg);
+  line-height: 1.75;
+  color: #d9d3e2;
+}
+
+.item b {
+  color: var(--color-white);
+}
+
+.more {
+  width: fit-content;
+  margin: var(--space-6) auto 0;
+  padding: var(--space-2) var(--space-6);
+  border: 1.5px dashed rgba(218, 134, 144, 0.6);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.ctaRow {
+  margin-top: var(--space-10);
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes ring {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(218, 134, 144, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(218, 134, 144, 0.12);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-12) var(--space-4);
+  }
+
+  .head {
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+  }
+
+  .book {
+    width: 130px;
+  }
+
+  .headText {
+    flex-basis: 100%;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 1.6875rem;
+  }
+
+  .item {
+    gap: var(--space-3);
+    padding: var(--space-4);
+  }
+
+  .item p {
+    font-size: 1.03rem;
+    line-height: 1.7;
+  }
+
+  .check {
+    width: 24px;
+    height: 24px;
+    margin-top: 6px;
+  }
+
+  .more {
+    font-size: var(--text-lg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book img,
+  .featured {
+    animation: none;
+  }
+
+  .check {
+    transform: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,164 @@
+.section {
+  background: var(--pb-paper);
+  color: var(--pb-ink);
+  padding: var(--space-20) var(--space-5);
+}
+
+.letter {
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 1.3125rem;
+  line-height: 1.9;
+}
+
+.letter p {
+  margin: 0 0 var(--space-5);
+}
+
+.lead {
+  font-weight: 700;
+  font-size: var(--text-2xl);
+  margin-top: var(--space-10) !important;
+}
+
+.letter > .lead:first-child {
+  margin-top: 0 !important;
+}
+
+.line {
+  display: block;
+}
+
+.strong {
+  font-weight: 700;
+}
+
+.semi {
+  font-weight: 700;
+}
+
+.tag {
+  background: #e9d7f5;
+  font-weight: 700;
+  padding: 0 var(--space-2);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Reel → views → the gap → the call? */
+.strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-2) 0 var(--space-8);
+  font-size: var(--text-base);
+  font-weight: 700;
+}
+
+.stripItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.chip {
+  background: var(--color-white);
+  border: 1.5px solid #D8508A;
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-4);
+}
+
+.chipGap {
+  border: 2px dashed var(--color-accent);
+  background: var(--pb-rose-soft);
+  color: var(--pb-rose-deep);
+  animation: wobble 3.2s ease-in-out infinite;
+}
+
+.chipMuted {
+  border-color: var(--pb-line);
+  color: #9a91a6;
+}
+
+.arrow {
+  color: #9A94B0;
+  animation: nudge 1.6s ease-in-out infinite;
+}
+
+.ctaRow {
+  margin: var(--space-10) 0;
+}
+
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-4px);
+  }
+}
+
+@keyframes wobble {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-1.5deg);
+  }
+  40% {
+    transform: rotate(1.5deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-12) var(--space-4);
+  }
+
+  .letter {
+    font-size: 1.125rem;
+    line-height: 1.85;
+  }
+
+  .lead {
+    font-size: 1.3125rem;
+  }
+
+  .strip {
+    flex-direction: column;
+    gap: var(--space-1);
+    font-size: 0.9375rem;
+  }
+
+  .stripItem {
+    flex-direction: column;
+    gap: var(--space-1);
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .chip {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .arrow {
+    transform: rotate(-90deg);
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chipGap,
+  .arrow {
+    animation: none;
+  }
+}
