@@ -16,7 +16,7 @@ const PAGES = [
 ] as const;
 
 /**
- * The 3D book with four real guide pages behind it, two on each side, stacked vertically.
+ * The 3D book with four real guide pages behind it: an overlapping pair on each side at mid-height.
  * On load the pages fan out from behind the book; on desktop the stack tilts toward the pointer.
  */
 export function BookStack({ alt }: BookStackProps) {
@@ -42,7 +42,7 @@ export function BookStack({ alt }: BookStackProps) {
         <div className={styles.glow} aria-hidden="true" />
         {PAGES.map((p) => (
           <div key={p.slot} className={`${styles.page} ${styles[p.slot]}`} aria-hidden="true">
-            <Image src={p.src} alt="" width={560} height={791} sizes="(max-width: 768px) 32vw, 220px" />
+            <Image src={p.src} alt="" width={560} height={791} sizes="(max-width: 768px) 35vw, 240px" />
           </div>
         ))}
         <div className={styles.book} aria-hidden="true">
@@ -51,7 +51,7 @@ export function BookStack({ alt }: BookStackProps) {
             alt=""
             width={900}
             height={1303}
-            sizes="(max-width: 768px) 62vw, 420px"
+            sizes="(max-width: 768px) 50vw, 340px"
             loading="eager"
             fetchPriority="high"
           />
