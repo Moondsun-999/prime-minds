@@ -66,7 +66,7 @@
 
 .big {
   direction: ltr;
-  text-align: right;
+  text-align: start;
   font-family: var(--font-body);
   font-weight: 800;
   font-size: 2.75rem;

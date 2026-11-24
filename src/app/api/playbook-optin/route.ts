@@ -12,6 +12,7 @@ interface PlaybookOptInBody {
   email?: unknown;
   paid?: unknown;
   company?: unknown; // honeypot: real people leave it empty
+  language?: unknown; // page language: ar, en or ma
 }
 
 const text = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
@@ -32,6 +33,7 @@ export async function POST(request: Request) {
   const name = text(body.name, 80);
   const whatsapp = text(body.whatsapp, 22);
   const email = text(body.email, 200);
+  const language = body.language === "en" || body.language === "ma" ? body.language : "ar";
   const paid = body.paid === "yes" || body.paid === "no" ? body.paid : null;
 
   const missing = [
@@ -55,6 +57,7 @@ export async function POST(request: Request) {
           email,
           paidLast6Months: paid === "yes",
           source: "playbook",
+          language,
           at: new Date().toISOString(),
         }),
       });

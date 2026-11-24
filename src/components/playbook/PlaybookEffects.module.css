@@ -45,3 +45,9 @@
     pointer-events: auto;
   }
 }
+
+/* Left-to-right pages: the reading-progress bar fills from the left. */
+:global([dir="ltr"]) .progress {
+  transform-origin: left center;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-secondary), var(--color-primary));
+}

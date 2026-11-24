@@ -1,9 +1,9 @@
-import { playbook } from "@/content/playbook";
+import type { PlaybookCopy } from "@/content/playbook";
 import styles from "./PlaybookAbout.module.css";
 
 /** Abdallah's story: each line reveals in turn down a thin timeline. */
-export function PlaybookAbout() {
-  const a = playbook.about;
+export function PlaybookAbout({ copy }: { copy: PlaybookCopy }) {
+  const a = copy.about;
   return (
     <section className={styles.section}>
       <div className={styles.inner}>

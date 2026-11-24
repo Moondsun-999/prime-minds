@@ -238,3 +238,9 @@
     opacity: 1;
   }
 }
+
+/* Left-to-right pages: the bars and strike-throughs draw from the left. */
+:global([dir="ltr"]) .card::before,
+:global([dir="ltr"]) .before::after {
+  transform-origin: left;
+}

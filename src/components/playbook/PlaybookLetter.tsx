@@ -1,4 +1,4 @@
-import { playbook } from "@/content/playbook";
+import type { PlaybookCopy } from "@/content/playbook";
 import { CtaButton } from "./CtaButton";
 import { CycleDiagram } from "./CycleDiagram";
 import { DifferentCards } from "./DifferentCards";
@@ -6,8 +6,8 @@ import { HowItWorks } from "./HowItWorks";
 import { RichText } from "./RichText";
 import styles from "./PlaybookLetter.module.css";
 
-export function PlaybookLetter() {
-  const l = playbook.letter;
+export function PlaybookLetter({ copy }: { copy: PlaybookCopy }) {
+  const l = copy.letter;
   return (
     <section className={styles.section}>
       <div className={styles.letter}>
@@ -65,8 +65,8 @@ export function PlaybookLetter() {
           <CtaButton cta={l.cta} />
         </div>
 
-        <DifferentCards />
-        <HowItWorks />
+        <DifferentCards copy={copy} />
+        <HowItWorks copy={copy} />
       </div>
     </section>
   );

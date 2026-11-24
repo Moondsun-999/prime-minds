@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { playbook } from "@/content/playbook";
+import type { PlaybookCopy } from "@/content/playbook";
 import styles from "./PlaybookEffects.module.css";
 
 const PHONE = "(max-width: 768px)";
@@ -15,7 +15,7 @@ const SPRING = "cubic-bezier(0.34, 1.56, 0.64, 1)";
  *   comes into view (the button squishes as it "catches" it) and bubbles back up from the
  *   bottom once that button has scrolled away. Never shown while a page button is on screen.
  */
-export function PlaybookEffects() {
+export function PlaybookEffects({ copy }: { copy: PlaybookCopy }) {
   const barRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLAnchorElement>(null);
 
@@ -209,7 +209,7 @@ export function PlaybookEffects() {
     <>
       <div ref={barRef} className={styles.progress} aria-hidden="true" />
       <a ref={stickyRef} href="#optin" className={styles.sticky} tabIndex={-1}>
-        {playbook.stickyCta}
+        {copy.stickyCta}
       </a>
     </>
   );

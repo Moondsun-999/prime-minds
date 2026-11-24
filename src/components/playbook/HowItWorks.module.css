@@ -23,7 +23,7 @@
 .steps::before {
   content: "";
   position: absolute;
-  right: calc(var(--space-5) + 23px);
+  inset-inline-end: calc(var(--space-5) + 23px);
   top: 40px;
   bottom: 40px;
   width: 2px;
@@ -101,7 +101,7 @@
   }
 
   .steps::before {
-    right: calc(var(--space-4) + 23px);
+    inset-inline-end: calc(var(--space-4) + 23px);
   }
 
   .step {

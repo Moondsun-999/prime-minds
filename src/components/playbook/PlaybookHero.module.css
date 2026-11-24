@@ -44,7 +44,7 @@
   font-weight: 700;
   font-size: var(--text-base);
   line-height: 1.5;
-  text-align: right;
+  text-align: start;
 }
 
 .badgeNew {
@@ -159,4 +159,16 @@
   .badgeNew {
     animation: none;
   }
+}
+
+.lang {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--space-4);
+}
+
+.langNote {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  opacity: 0.8;
 }

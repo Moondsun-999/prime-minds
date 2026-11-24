@@ -1,13 +1,13 @@
 import Image from "next/image";
-import { playbook } from "@/content/playbook";
+import type { PlaybookCopy } from "@/content/playbook";
 import { CtaButton } from "./CtaButton";
 import { FunnelStack } from "./FunnelStack";
 import { PlaybookIcon, type PlaybookIconName } from "./PlaybookIcon";
 import styles from "./HowItWorks.module.css";
 
 /** The three stages as equal cards with a drawn connector, then the full funnel (image on desktop, stacked on phones). */
-export function HowItWorks() {
-  const h = playbook.how;
+export function HowItWorks({ copy }: { copy: PlaybookCopy }) {
+  const h = copy.how;
   return (
     <>
       <h2 className={styles.title} data-reveal="">{h.title}</h2>

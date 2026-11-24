@@ -1,10 +1,10 @@
-import { playbook } from "@/content/playbook";
+import type { PlaybookCopy } from "@/content/playbook";
 import { PlaybookIcon, type PlaybookIconName } from "./PlaybookIcon";
 import styles from "./DifferentCards.module.css";
 
 /** "What's different here?": three equal cards and the $1.6M card (counts up). The proof block is hidden for now. */
-export function DifferentCards() {
-  const d = playbook.different;
+export function DifferentCards({ copy }: { copy: PlaybookCopy }) {
+  const d = copy.different;
   return (
     <>
       <h2 className={styles.title} data-reveal="">{d.title}</h2>

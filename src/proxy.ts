@@ -1,7 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { defaultLocale, detectLocale, hasLocale, localeCookie } from "@/i18n/config";
 
-// Runs on "/" only: picks a language and redirects to /ar, /en or /ma.
+// Runs on "/" and "/playbook": picks a language and redirects to /ar, /en or /ma
+// (for example "/playbook" becomes "/ma/playbook").
 export function proxy(request: NextRequest) {
   const saved = request.cookies.get(localeCookie)?.value;
   const locale = hasLocale(saved)
@@ -12,7 +13,7 @@ export function proxy(request: NextRequest) {
       ) ?? defaultLocale;
 
   const url = request.nextUrl.clone();
-  url.pathname = `/${locale}`;
+  url.pathname = request.nextUrl.pathname === "/" ? `/${locale}` : `/${locale}${request.nextUrl.pathname}`;
   const response = NextResponse.redirect(url, 307);
   // The target depends on country and language headers: never cache it.
   response.headers.set("Cache-Control", "private, no-store");
@@ -20,5 +21,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/"],
+  matcher: ["/", "/playbook"],
 };
