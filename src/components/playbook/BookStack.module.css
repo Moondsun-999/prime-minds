@@ -1,7 +1,8 @@
-/* Stage is 7:8 (portrait). The book sits centred; two pages peek out on each side, top and bottom. */
+/* Stage is 14:13. The book sits centred; behind it, a pair of overlapping pages on each side at mid-height
+   (back page further out and higher, front page closer to the book and lower), per Abdallah's sketch. */
 .wrap {
   width: 100%;
-  max-width: 620px;
+  max-width: 700px;
   margin: 0 auto;
   perspective: 1400px;
 }
@@ -11,7 +12,7 @@
   --ry: 0deg;
   position: relative;
   width: 100%;
-  aspect-ratio: 7 / 8;
+  aspect-ratio: 14 / 13;
   transform: rotateX(var(--rx)) rotateY(var(--ry));
   transform-style: preserve-3d;
   transition: transform 0.25s ease-out;
@@ -28,7 +29,7 @@
 
 .page {
   position: absolute;
-  width: 31.4%;
+  width: 34.3%;
   aspect-ratio: 560 / 791;
   border-radius: 4px;
   overflow: hidden;
@@ -44,29 +45,29 @@
 }
 
 .lt {
-  left: 5%;
-  top: 7%;
-  --to: rotate(-7deg);
+  left: 4.3%;
+  top: 30.8%;
+  --to: rotate(-9deg);
   animation-delay: 0.35s;
 }
 
 .lb {
-  left: 6.5%;
-  top: 52.5%;
-  --to: rotate(-3deg);
+  left: 17.1%;
+  top: 41.5%;
+  --to: rotate(-4deg);
   animation-delay: 0.5s;
 }
 
 .rt {
-  right: 5%;
-  top: 7%;
-  --to: rotate(7deg);
+  right: 4.3%;
+  top: 27.7%;
+  --to: rotate(8deg);
   animation-delay: 0.42s;
 }
 
 .rb {
-  right: 6.5%;
-  top: 52.5%;
+  right: 16.4%;
+  top: 40%;
   --to: rotate(3deg);
   animation-delay: 0.58s;
 }
@@ -74,8 +75,8 @@
 .book {
   position: absolute;
   left: 50%;
-  top: 9.5%;
-  width: 61.6%;
+  top: 11.5%;
+  width: 48.4%;
   transform: translate(-50%, 0) translateZ(40px);
   filter: drop-shadow(0 36px 40px rgba(0, 0, 0, 0.55));
   animation: rise 0.9s var(--pb-ease) both, float 6s ease-in-out 1.2s infinite;
