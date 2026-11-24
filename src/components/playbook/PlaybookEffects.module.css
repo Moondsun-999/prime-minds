@@ -1,0 +1,46 @@
+.progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 40;
+  background: linear-gradient(270deg, var(--color-accent), var(--color-secondary), var(--color-primary));
+  transform-origin: right center;
+  transform: scaleX(0);
+  pointer-events: none;
+}
+
+.sticky {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sticky {
+    position: fixed;
+    inset: auto var(--space-4) var(--space-4) var(--space-4);
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(180deg, #E79AA4 0%, var(--color-accent) 100%);
+    color: #1A0634;
+    font-family: var(--font-ar), serif;
+    font-weight: 700;
+    font-size: var(--text-xl);
+    text-decoration: none;
+    box-shadow: 0 5px 0 var(--pb-plum-edge), 0 18px 40px rgba(0, 0, 0, 0.45);
+    transform: translateY(140%);
+    transition: transform 0.4s var(--pb-ease);
+  }
+
+  .sticky[data-visible] {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticky {
+    transition: none;
+  }
+}

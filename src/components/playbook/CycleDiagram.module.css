@@ -1,0 +1,119 @@
+.cycle {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 1 / 1;
+  margin: var(--space-2) auto var(--space-6);
+}
+
+.ring,
+.arrows {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ring {
+  animation: spin 60s linear infinite;
+}
+
+.arrows path {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 1.4;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  transition: stroke-dashoffset 0.8s ease 0.8s;
+}
+
+.cycle[data-shown] .arrows path {
+  stroke-dashoffset: 0;
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 44%;
+  margin: 0 !important;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.step {
+  position: absolute;
+  width: 32%;
+  box-sizing: border-box;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  border: 1px solid var(--pb-line);
+  box-shadow: 0 6px 16px rgba(54, 10, 151, 0.08);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  text-align: center;
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  transition: transform 0.5s var(--pb-ease), opacity 0.5s ease;
+  transition-delay: calc(0.25s + var(--i) * 0.15s);
+}
+
+.wide {
+  width: 36%;
+}
+
+.rose {
+  background: var(--pb-rose-soft);
+  border-color: var(--pb-rose-mark);
+}
+
+.cycle[data-shown] .step {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .step,
+  .wide {
+    width: 34%;
+    padding: 6px;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    border-radius: 10px;
+  }
+
+  .center {
+    width: 40%;
+    font-size: var(--text-sm);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring {
+    animation: none;
+  }
+
+  .step,
+  .arrows path {
+    transition: none;
+  }
+}

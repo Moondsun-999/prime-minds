@@ -1,0 +1,87 @@
+.cta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-6);
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #E79AA4 0%, var(--color-accent) 100%);
+  color: #1A0634;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 6px 0 var(--pb-plum-edge), 0 18px 40px rgba(218, 134, 144, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+}
+
+/* A light sweep every few seconds draws the eye without moving the layout. */
+.cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.45) 50%, transparent 65%);
+  transform: translateX(120%);
+  animation: sweep 4.5s ease-in-out 1.2s infinite;
+  pointer-events: none;
+}
+
+.cta:hover {
+  background: linear-gradient(180deg, #EFAAB3 0%, #E2939C 100%);
+}
+
+.cta:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 var(--pb-plum-edge), 0 10px 24px rgba(218, 134, 144, 0.3);
+}
+
+.cta:focus-visible {
+  outline: 3px solid var(--color-white);
+  outline-offset: 4px;
+}
+
+.label {
+  font-weight: 700;
+  font-size: var(--text-3xl);
+  line-height: var(--leading-snug);
+}
+
+.sub {
+  font-size: var(--text-lg);
+  opacity: 0.85;
+  line-height: var(--leading-normal);
+}
+
+@keyframes sweep {
+  0%,
+  70% {
+    transform: translateX(120%);
+  }
+  100% {
+    transform: translateX(-120%);
+  }
+}
+
+@media (max-width: 768px) {
+  .cta {
+    padding: var(--space-4);
+  }
+
+  .label {
+    font-size: var(--text-2xl);
+  }
+
+  .sub {
+    font-size: var(--text-sm);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta::after {
+    animation: none;
+  }
+}
