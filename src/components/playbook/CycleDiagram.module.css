@@ -14,21 +14,23 @@
   height: 100%;
 }
 
-.ring {
-  animation: spin 60s linear infinite;
+/* The ring stays put; its dashes flow clockwise so the loop feels alive without drifting off the arrows. */
+.ring circle {
+  animation: flow 6s linear infinite;
 }
 
-.arrows path {
+.arc {
   fill: none;
   stroke: var(--color-accent);
-  stroke-width: 1.4;
-  stroke-dasharray: 40;
-  stroke-dashoffset: 40;
-  transition: stroke-dashoffset 0.8s ease 0.8s;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  transition-delay: calc(0.5s + var(--i) * 0.15s);
 }
 
-.cycle[data-shown] .arrows path {
-  stroke-dashoffset: 0;
+.cycle[data-shown] .arc {
+  opacity: 1;
 }
 
 .center {
@@ -85,9 +87,9 @@
   opacity: 1;
 }
 
-@keyframes spin {
+@keyframes flow {
   to {
-    transform: rotate(360deg);
+    stroke-dashoffset: -24;
   }
 }
 
@@ -108,12 +110,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ring {
+  .ring circle {
     animation: none;
   }
 
   .step,
-  .arrows path {
+  .arc {
     transition: none;
   }
 }

@@ -9,7 +9,7 @@ interface CtaButtonProps {
 /** The rose call-to-action. Every one opens the opt-in pop-up through the #optin hash. */
 export function CtaButton({ cta, id }: CtaButtonProps) {
   return (
-    <a href="#optin" id={id} className={styles.cta}>
+    <a href="#optin" id={id} className={styles.cta} data-cta="">
       <span className={styles.label}>{cta.label}</span>
       <span className={styles.sub}>{cta.sub}</span>
     </a>
