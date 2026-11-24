@@ -1,8 +1,16 @@
 import React from "react";
 import Image from "next/image";
+import type { HomeCopy } from "@/content/home";
+import en from "@/content/home/en";
 import styles from "./Footer.module.css";
 
-export default function Footer() {
+const navAnchors = ["#curriculum", "#pricing", "#guarantee", "#faq"];
+
+interface FooterProps {
+  copy?: HomeCopy["footer"];
+}
+
+export default function Footer({ copy = en.footer }: FooterProps) {
   const youtube = process.env.NEXT_PUBLIC_YOUTUBE_URL || "#";
   const instagram = process.env.NEXT_PUBLIC_INSTAGRAM_URL || "#";
   const tiktok = process.env.NEXT_PUBLIC_TIKTOK_URL || "#";
@@ -18,22 +26,21 @@ export default function Footer() {
             width={150}
             height={22}
           />
-          <p className={styles.tagline}>
-            I&apos;m real. Social media is not.
-          </p>
+          <p className={styles.tagline}>{copy.tagline}</p>
         </div>
 
         <div className={styles.links}>
           <div className={styles.column}>
-            <h4 className={styles.columnTitle}>Navigate</h4>
-            <a href="#curriculum">Curriculum</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#guarantee">Guarantee</a>
-            <a href="#faq">FAQ</a>
+            <h4 className={styles.columnTitle}>{copy.navigate}</h4>
+            {copy.navLinks.map((label, i) => (
+              <a key={i} href={navAnchors[i]}>
+                {label}
+              </a>
+            ))}
           </div>
 
           <div className={styles.column}>
-            <h4 className={styles.columnTitle}>Follow</h4>
+            <h4 className={styles.columnTitle}>{copy.follow}</h4>
             <a href={youtube} target="_blank" rel="noopener noreferrer">YouTube</a>
             <a href={instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
             <a href={tiktok} target="_blank" rel="noopener noreferrer">TikTok</a>
@@ -44,7 +51,7 @@ export default function Footer() {
         <div className={`divider divider--gradient ${styles.divider}`} />
 
         <div className={styles.bottom}>
-          <p>© {new Date().getFullYear()} Prime Minds — Abdallah Khalk. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Prime Minds — {copy.rights}</p>
         </div>
       </div>
     </footer>

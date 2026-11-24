@@ -4,9 +4,17 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./ui/Button";
+import LanguageSwitcher from "./LanguageSwitcher";
+import type { HomeCopy } from "@/content/home";
+import type { Locale } from "@/i18n/config";
 import styles from "./Navbar.module.css";
 
-export default function Navbar() {
+interface NavbarProps {
+  copy: HomeCopy["nav"];
+  locale: Locale;
+}
+
+export default function Navbar({ copy, locale }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -20,10 +28,11 @@ export default function Navbar() {
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}>
       <div className={`container ${styles.inner}`}>
-        {/* Empty spacer for flex layout balance */}
-        <div className={styles.spacer} />
+        <div className={styles.spacer}>
+          <LanguageSwitcher current={locale} label={copy.languageLabel} />
+        </div>
 
-        <Link href="/" className={styles.logo}>
+        <Link href={`/${locale}`} className={styles.logo}>
           <Image
             src="/images/brand/logo-dark-bg.svg"
             alt="Prime Minds"
@@ -36,7 +45,7 @@ export default function Navbar() {
 
         <div className={styles.cta}>
           <Button href={skoolUrl} variant="primary" size="default">
-            Join Free
+            {copy.join}
           </Button>
         </div>
       </div>

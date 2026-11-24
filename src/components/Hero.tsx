@@ -1,9 +1,14 @@
 import React from "react";
 import Button from "./ui/Button";
 import VideoEmbed from "./VideoEmbed";
+import type { HomeCopy } from "@/content/home";
 import styles from "./Hero.module.css";
 
-export default function Hero() {
+interface HeroProps {
+  copy: HomeCopy["hero"];
+}
+
+export default function Hero({ copy }: HeroProps) {
   const skoolUrl = process.env.NEXT_PUBLIC_SKOOL_URL || "#";
 
   return (
@@ -14,34 +19,25 @@ export default function Hero() {
       <div className={styles.gridBg} />
 
       <div className={`container ${styles.content}`}>
-        <span className={`section__eyebrow animate-fade-in-up`}>
-          FOR SERIOUS PEOPLE ONLY
-        </span>
+        <span className={`section__eyebrow animate-fade-in-up`}>{copy.eyebrow}</span>
 
         <h1 className={`animate-fade-in-up delay-1`}>
-          From 9&#8209;to&#8209;5 Frustration
+          {copy.titleA}
           <br />
-          <span className="text-gradient">to Building Your First Business.</span>
+          <span className="text-gradient">{copy.titleB}</span>
         </h1>
 
-        <p className={`${styles.subtitle} animate-fade-in-up delay-2`}>
-          I failed at 9 businesses — Trading, Ecom, Dropshipping, SMMA — and I&apos;m
-          still here. Now I&apos;m building an AI Agency while working a day job, and
-          I&apos;m documenting every step. Machi l guru flous, mashi 7ilm — just real
-          work with real people.
-        </p>
+        <p className={`${styles.subtitle} animate-fade-in-up delay-2`}>{copy.subtitle}</p>
 
         <div className={`${styles.video} animate-fade-in-up delay-3`}>
-          <VideoEmbed videoId="dQw4w9WgXcQ" title="Prime Minds Introduction" />
+          <VideoEmbed videoId="dQw4w9WgXcQ" title={copy.videoTitle} />
         </div>
 
         <div className={`${styles.cta} animate-fade-in-up delay-4`}>
           <Button href={skoolUrl} variant="primary" size="xl">
-            Join Prime Minds Free →
+            {copy.cta}
           </Button>
-          <p className={styles.ctaNote}>
-            Pre-launch access. Free for early members. La carte mahtajhach.
-          </p>
+          <p className={styles.ctaNote}>{copy.note}</p>
         </div>
       </div>
     </section>
