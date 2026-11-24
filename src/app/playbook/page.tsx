@@ -5,7 +5,6 @@ import { PlaybookHero } from "@/components/playbook/PlaybookHero";
 import { PlaybookLetter } from "@/components/playbook/PlaybookLetter";
 import { PlaybookBullets } from "@/components/playbook/PlaybookBullets";
 import { PlaybookShifts } from "@/components/playbook/PlaybookShifts";
-import { PlaybookAbout } from "@/components/playbook/PlaybookAbout";
 import { PlaybookClose } from "@/components/playbook/PlaybookClose";
 import { OptInModal } from "@/components/playbook/OptInModal";
 import { PlaybookEffects } from "@/components/playbook/PlaybookEffects";
@@ -37,7 +36,8 @@ export default function PlaybookPage() {
         <PlaybookLetter />
         <PlaybookBullets />
         <PlaybookShifts />
-        <PlaybookAbout />
+        {/* The "who am I" section (PlaybookAbout) is hidden until its photo and chart exist.
+            Full version: branch keep/playbook-full-story. */}
         <PlaybookClose />
       </main>
       <OptInModal />

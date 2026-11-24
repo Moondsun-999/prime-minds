@@ -1,12 +1,10 @@
 import { playbook } from "@/content/playbook";
 import { PlaybookIcon, type PlaybookIconName } from "./PlaybookIcon";
-import { RichText } from "./RichText";
 import styles from "./DifferentCards.module.css";
 
-/** "What's different here?": three equal cards and the $1.6M card (counts up), then the proof block. */
+/** "What's different here?": three equal cards and the $1.6M card (counts up). The proof block is hidden for now. */
 export function DifferentCards() {
   const d = playbook.different;
-  const p = playbook.proof;
   return (
     <>
       <h2 className={styles.title} data-reveal="">{d.title}</h2>
@@ -32,14 +30,8 @@ export function DifferentCards() {
         </div>
       </div>
 
-      <h2 className={styles.title} data-reveal="">{p.title}</h2>
-      <div className={styles.placeholder} data-reveal="">[ {p.chartPlaceholder} ]</div>
-      <p data-reveal="">
-        <RichText parts={p.text} />
-        <br />
-        {p.text2}
-      </p>
-      <div className={styles.placeholder} data-reveal="">[ {p.photoPlaceholder} ]</div>
+      {/* The proof block (call-centre story, sales chart, photo) is hidden until those assets exist.
+          Full version: branch keep/playbook-full-story. */}
     </>
   );
 }
