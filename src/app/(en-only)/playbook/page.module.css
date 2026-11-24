@@ -1,0 +1,86 @@
+/* /playbook: page-wide tokens and the shared reveal + highlighter effects used by every section. */
+.page {
+  --pb-ink: #1a1a1a;
+  --pb-ink-soft: #3d3550;
+  --pb-paper: #F4F1F7;
+  --pb-paper-2: #EDE5FA;
+  --pb-line: #E4DCEB;
+  --pb-rose-soft: #FBE9EC;
+  --pb-rose-mark: #F3C2CA;
+  --pb-rose-deep: #B24A5C;
+  --pb-rose-light: #F6C6CD;
+  --pb-plum-edge: #9C4F6C;
+  --pb-night: #1a0650;
+  --pb-card-dark: #15111C;
+  --pb-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  font-family: var(--font-ar), 'Amiri', serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: clip;
+}
+
+/* globals.css greys every <p>; on this page paragraphs take their section's colour.
+   :where() keeps the specificity at the global rule's level, so section classes still win. */
+:where(.page) :global(p) {
+  color: inherit;
+  line-height: inherit;
+}
+
+.page :global(.n) {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* Scroll reveal: elements carry data-reveal, PlaybookEffects adds data-shown when they enter. */
+.page :global([data-reveal]) {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--pb-ease), transform 0.7s var(--pb-ease);
+  transition-delay: calc(var(--d, 0) * 90ms);
+}
+
+.page :global([data-reveal="left"]) {
+  transform: translateX(-28px);
+}
+
+.page :global([data-reveal="right"]) {
+  transform: translateX(28px);
+}
+
+.page :global([data-reveal="zoom"]) {
+  transform: scale(0.94);
+}
+
+.page :global([data-reveal][data-shown]) {
+  opacity: 1;
+  transform: none;
+}
+
+/* Highlighter: the marker sweeps in from the right when the line is revealed. */
+.page :global(.hl) {
+  background-image: linear-gradient(180deg, transparent 55%, var(--pb-rose-mark) 55%);
+  background-repeat: no-repeat;
+  background-position: 100% 0;
+  background-size: 0% 100%;
+  padding: 0 var(--space-1);
+  transition: background-size 0.9s var(--pb-ease) 0.35s;
+}
+
+.page :global([data-shown] .hl),
+.page :global(.hl[data-shown]) {
+  background-size: 100% 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page :global([data-reveal]) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .page :global(.hl) {
+    background-size: 100% 100%;
+    transition: none;
+  }
+}

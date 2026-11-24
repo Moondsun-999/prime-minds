@@ -1,0 +1,105 @@
+.title {
+  margin: var(--space-10) 0 var(--space-4);
+  font-family: var(--font-ar), serif;
+  font-weight: 700;
+  font-size: var(--text-2xl);
+  line-height: 1.5;
+  color: var(--pb-ink);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  grid-auto-rows: 1fr;
+  gap: var(--space-4);
+  margin: var(--space-2) 0 var(--space-6);
+  font-size: var(--text-lg);
+  line-height: 1.75;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  border: 1px solid var(--pb-line);
+  box-shadow: 0 10px 28px rgba(54, 10, 151, 0.1), 0 2px 6px rgba(54, 10, 151, 0.06);
+  transition: opacity 0.7s var(--pb-ease), transform 0.35s var(--pb-ease), box-shadow 0.3s ease !important;
+}
+
+.card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 18px 40px rgba(54, 10, 151, 0.18), 0 4px 10px rgba(54, 10, 151, 0.08);
+}
+
+.card p {
+  margin: 0 !important;
+}
+
+.pill {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--pb-paper-2);
+  color: var(--color-primary);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.pillRose {
+  background: var(--pb-rose-soft);
+  color: var(--pb-rose-deep);
+}
+
+.dark {
+  justify-content: center;
+  background: var(--color-primary);
+  border-color: transparent;
+  color: var(--color-white);
+  box-shadow: 0 14px 36px rgba(54, 10, 151, 0.35);
+}
+
+.big {
+  direction: ltr;
+  text-align: right;
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 2.75rem;
+  line-height: 1.1;
+  color: var(--pb-rose-light);
+}
+
+.placeholder {
+  margin: 0 0 var(--space-5);
+  padding: var(--space-12) var(--space-5);
+  border: 2px dashed #b9a6cc;
+  border-radius: 14px;
+  text-align: center;
+  color: #6b5a7d;
+  font-size: var(--text-lg);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    font-size: 1.03rem;
+    line-height: 1.7;
+  }
+
+  .card {
+    padding: var(--space-4);
+  }
+
+  .title {
+    font-size: 1.3125rem;
+  }
+
+  .placeholder {
+    padding: var(--space-8) var(--space-4);
+    font-size: var(--text-base);
+  }
+}

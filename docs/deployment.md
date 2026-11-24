@@ -23,6 +23,17 @@ Set in Vercel → Project → Settings → Environment Variables; names are list
 - `NEXT_PUBLIC_BOOKING_URL`: booking link for the Business Fit Call. Until it's set, the call buttons show "Booking opens soon".
 - `OPTIN_WEBHOOK_URL`: where `/api/optin` forwards lead-magnet sign-ups (for example an n8n webhook). Until it's set, **emails are not stored anywhere**; the workbook still opens.
 - `NEXT_PUBLIC_SKOOL_URL`: Skool community link used by the home page.
+Set in Vercel → Project → Settings → Environment Variables (server-only; never `NEXT_PUBLIC_`).
+
+Client onboarding form (`/onboarding/<code>`):
+- `ONBOARDING_CODES`: private link codes mapped to client folder slugs, `code1:kawtar,code2:nachwa`.
+  Codes are random, 16–64 letters/digits. Any code not listed gets a 404. Add a pair per new client.
+- `ONBOARDING_WEBHOOK_URL`: where `/api/onboarding` sends the answers (JSON with `client`, `path`,
+  `markdown`, `answers`). The receiver saves `markdown` to `path` in the ops repo.
+- `ONBOARDING_WEBHOOK_SECRET`: sent as the `X-Onboarding-Secret` header; the receiver rejects anything else.
+
+Until the webhook is set, the form shows the client an error on submit and keeps her answers in her
+browser, so nothing is lost.
 
 ## `vercel.json`
 Security headers on every route and long-term caching for `/images/*`. Redirects are handled by the

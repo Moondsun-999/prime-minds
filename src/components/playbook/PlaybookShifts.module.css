@@ -1,0 +1,240 @@
+.section {
+  padding: var(--space-24) var(--space-5);
+  background: linear-gradient(180deg, var(--pb-paper) 0%, var(--pb-paper-2) 100%);
+  color: var(--pb-ink);
+}
+
+.inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-2);
+  text-align: center;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--pb-rose-deep);
+}
+
+.title {
+  max-width: 760px;
+  margin: 0 auto var(--space-4);
+  text-align: center;
+  font-family: var(--font-ar), serif;
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3.4vw, 2.625rem);
+  line-height: 1.45;
+  color: var(--pb-night);
+}
+
+.intro {
+  max-width: 680px;
+  margin: 0 auto var(--space-10);
+  text-align: center;
+  font-size: var(--text-xl);
+  line-height: 1.85;
+  color: var(--pb-ink-soft);
+}
+
+.list {
+  display: grid;
+  grid-auto-rows: 1fr;
+  gap: var(--space-5);
+}
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: var(--space-6);
+  padding: var(--space-8);
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--color-white);
+  border: 1px solid var(--pb-line);
+  box-shadow: 0 10px 28px rgba(54, 10, 151, 0.1), 0 2px 6px rgba(54, 10, 151, 0.06);
+  transition: opacity 0.7s var(--pb-ease), transform 0.35s var(--pb-ease), box-shadow 0.3s ease !important;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.9s var(--pb-ease) 0.3s;
+}
+
+.card[data-shown]::before {
+  transform: scaleX(1);
+}
+
+.card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 18px 40px rgba(54, 10, 151, 0.18);
+}
+
+.rose {
+  border: 1.5px solid var(--color-accent);
+}
+
+.num {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 4rem;
+  line-height: 0.9;
+  background: linear-gradient(180deg, #5B2BD0, var(--color-primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.rose .num {
+  background-image: linear-gradient(180deg, #E79AA4, var(--pb-rose-deep));
+}
+
+.cardTitle {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-ar), serif;
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--pb-night);
+}
+
+.text {
+  margin: 0;
+  font-size: 1.1875rem;
+  line-height: 1.85;
+  color: var(--pb-ink-soft);
+}
+
+.ba {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-4) 0 0;
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.before {
+  position: relative;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: #F1EEF4;
+  color: #8a8296;
+}
+
+/* The strike is drawn across the "before" chip once the card is on screen. */
+.before::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  left: 10px;
+  top: 52%;
+  height: 1.5px;
+  background: rgba(178, 74, 92, 0.7);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease 0.9s;
+}
+
+.card[data-shown] .before::after {
+  transform: scaleX(1);
+}
+
+.arrow {
+  color: var(--pb-rose-deep);
+}
+
+.after {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--pb-rose-soft);
+  color: var(--pb-rose-deep);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.5s ease 1.3s, transform 0.5s ease 1.3s;
+}
+
+.card[data-shown] .after {
+  opacity: 1;
+  transform: none;
+}
+
+.callout {
+  max-width: 680px;
+  margin: var(--space-8) auto 0;
+  padding: var(--space-5) var(--space-6);
+  border-radius: 18px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  text-align: center;
+  font-size: 1.3125rem;
+  font-weight: 700;
+  line-height: 1.8;
+  box-shadow: 0 16px 40px rgba(54, 10, 151, 0.3);
+}
+
+.callout span {
+  color: var(--pb-rose-light);
+}
+
+.ctaRow {
+  margin-top: var(--space-10);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-12) var(--space-4);
+  }
+
+  .intro {
+    font-size: 1.0625rem;
+    margin-bottom: var(--space-8);
+  }
+
+  .card {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .num {
+    font-size: 2.75rem;
+  }
+
+  .cardTitle {
+    font-size: 1.25rem;
+  }
+
+  .text {
+    font-size: 1.03rem;
+    line-height: 1.75;
+  }
+
+  .ba {
+    font-size: 0.84rem;
+  }
+
+  .callout {
+    font-size: 1.125rem;
+    padding: var(--space-5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card::before,
+  .before::after,
+  .after {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}
