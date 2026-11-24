@@ -42,7 +42,7 @@
   padding: var(--space-6) var(--space-8) var(--space-6);
   border-radius: 26px;
   color: var(--color-white);
-  text-align: right;
+  text-align: start;
   background: linear-gradient(160deg, rgba(91, 43, 208, 0.82) 0%, rgba(54, 10, 151, 0.86) 45%, rgba(126, 69, 128, 0.84) 100%);
   border: 1px solid rgba(255, 255, 255, 0.22);
   box-shadow:
@@ -65,7 +65,7 @@
 .x {
   position: absolute;
   top: 14px;
-  left: 14px;
+  inset-inline-start: 14px;
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -147,7 +147,7 @@
 }
 
 .field input[dir="ltr"] {
-  text-align: right;
+  text-align: start;
 }
 
 .field input::placeholder {

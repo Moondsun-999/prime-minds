@@ -84,3 +84,13 @@
     transition: none;
   }
 }
+
+/* English and Darija: the Latin body font stands in for Amiri everywhere --font-ar is used. */
+.latin {
+  --font-ar: var(--font-jakarta);
+}
+
+/* Left-to-right pages: the highlighter sweeps in from the left. */
+.page[dir="ltr"] :global(.hl) {
+  background-position: 0 0;
+}

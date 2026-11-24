@@ -1,4 +1,4 @@
-// Text of the /playbook opt-in page (Arabic, simple MSA). Single source for every section.
+// /playbook opt-in page, Arabic (simple MSA). Defines the shape every language must match.
 // Canonical copy: ../ops/docs/primeminds/lead-magnet/2026-11-23-hvco-page-copy.md (v3).
 // Headline and subheadline are locked (ops DECISIONS 2026-11-23): change them only with Abdallah.
 
@@ -10,7 +10,7 @@ export interface Cta {
   sub: string;
 }
 
-export const playbook = {
+const ar = {
   meta: {
     title: "محرّك العملاء: الدليل المجاني — Prime Minds",
     description:
@@ -26,8 +26,10 @@ export const playbook = {
     sub: "الذكاء الاصطناعي يقوم بـ90% من العمل، من توليد الأفكار إلى المونتاج. إنستغرام يوزّع. الكلمة السرّية تحوّل المشاهدات إلى رسائل في الخاص. وأنت تفعل شيئاً واحداً: تردّ. «محرّك العملاء» كاملاً مجاناً، وهو نفسه الذي نضمن نتائجه.",
     preCta: "اعرف ما الذي يمنع محتواك من جلب الطلبات، وكيف تصلحه.",
     cta: { label: "أرسل لي الدليل المجاني", sub: "ما تعلّمته في 4 سنوات و9 مشاريع فاشلة، مجاناً" } satisfies Cta,
+    langNote: "",
     bookAlt: "غلاف دليل «محرّك العملاء» وأربع صفحات من داخله",
   },
+  langLabel: "اللغة",
   privacy: "نستخدم بياناتك لإرسال الدليل، ولا نبيعها لأحد.",
   letter: {
     greeting: "إلى كل كوتش يقرأ هذه الصفحة،",
@@ -170,4 +172,7 @@ export const playbook = {
   },
   stickyCta: "أرسل لي الدليل المجاني",
   footer: "Prime Minds · khalk.co",
-} as const;
+};
+
+export default ar;
+export type PlaybookCopy = typeof ar;

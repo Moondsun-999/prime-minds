@@ -1,11 +1,11 @@
 import Image from "next/image";
-import { playbook } from "@/content/playbook";
+import type { PlaybookCopy } from "@/content/playbook";
 import { CtaButton } from "./CtaButton";
 import { PlaybookIcon } from "./PlaybookIcon";
 import styles from "./PlaybookBullets.module.css";
 
-export function PlaybookBullets() {
-  const b = playbook.bullets;
+export function PlaybookBullets({ copy }: { copy: PlaybookCopy }) {
+  const b = copy.bullets;
   return (
     <section className={styles.section}>
       <div className={styles.inner}>

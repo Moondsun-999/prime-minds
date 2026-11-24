@@ -1,10 +1,10 @@
-import { playbook } from "@/content/playbook";
+import type { PlaybookCopy } from "@/content/playbook";
 import { CtaButton } from "./CtaButton";
 import styles from "./PlaybookShifts.module.css";
 
 /** The 3 shifts: big gradient numbers, a before → after chip that strikes through on reveal, a closing callout. */
-export function PlaybookShifts() {
-  const s = playbook.shifts;
+export function PlaybookShifts({ copy }: { copy: PlaybookCopy }) {
+  const s = copy.shifts;
   return (
     <section className={styles.section}>
       <div className={styles.inner}>

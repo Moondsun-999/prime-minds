@@ -9,15 +9,17 @@ import styles from "./LanguageSwitcher.module.css";
 interface LanguageSwitcherProps {
   current: Locale;
   label: string;
+  /** Page to switch within, e.g. "/playbook". Defaults to the home page. */
+  path?: string;
 }
 
-export default function LanguageSwitcher({ current, label }: LanguageSwitcherProps) {
+export default function LanguageSwitcher({ current, label, path = "" }: LanguageSwitcherProps) {
   return (
     <div className={styles.switcher} role="group" aria-label={label}>
       {locales.map((locale) => (
         <Link
           key={locale}
-          href={`/${locale}`}
+          href={`/${locale}${path}`}
           hrefLang={localeMeta[locale].htmlLang}
           lang={localeMeta[locale].htmlLang}
           className={`${styles.option} ${locale === current ? styles.active : ""}`}

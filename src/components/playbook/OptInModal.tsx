@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { playbook } from "@/content/playbook";
+import type { PlaybookCopy } from "@/content/playbook";
+import type { Locale } from "@/i18n/config";
 import styles from "./OptInModal.module.css";
 
 type Status = "idle" | "sending" | "done" | "error";
@@ -15,8 +16,8 @@ const PHONE = /^\+?[0-9][0-9\s-]{7,18}$/;
  * The opt-in pop-up. Opens when the URL hash is #optin (every CTA links there), closes on
  * Escape, the × button or a click on the backdrop. Posts to /api/playbook-optin.
  */
-export function OptInModal() {
-  const f = playbook.form;
+export function OptInModal({ copy, locale }: { copy: PlaybookCopy; locale: Locale }) {
+  const f = copy.form;
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<Partial<Record<Field, string>>>({});
@@ -97,7 +98,7 @@ export function OptInModal() {
       const res = await fetch("/api/playbook-optin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, language: locale }),
       });
       setStatus(res.ok ? "done" : "error");
     } catch {
@@ -157,7 +158,7 @@ export function OptInModal() {
               {status === "sending" ? f.sending : f.submit}
             </button>
             {status === "error" && <p className={styles.err} role="alert">{f.errors.server}</p>}
-            <p className={styles.privacy}>{playbook.privacy}</p>
+            <p className={styles.privacy}>{copy.privacy}</p>
           </form>
         )}
       </div>

@@ -1,9 +1,9 @@
-import { playbook } from "@/content/playbook";
+import type { PlaybookCopy } from "@/content/playbook";
 import { CtaButton } from "./CtaButton";
 import styles from "./PlaybookClose.module.css";
 
-export function PlaybookClose() {
-  const c = playbook.close;
+export function PlaybookClose({ copy }: { copy: PlaybookCopy }) {
+  const c = copy.close;
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
@@ -13,8 +13,8 @@ export function PlaybookClose() {
         <div className={styles.ctaRow} data-reveal="zoom">
           <CtaButton cta={c.cta} />
         </div>
-        <p className={styles.privacy}>{playbook.privacy}</p>
-        <p className={styles.footer}>{playbook.footer}</p>
+        <p className={styles.privacy}>{copy.privacy}</p>
+        <p className={styles.footer}>{copy.footer}</p>
       </div>
     </section>
   );
